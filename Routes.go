@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-
 	"github.com/gorilla/mux"
 )
 
@@ -59,5 +58,11 @@ var routes = Routes{
 		"GET",
 		"/version",
 		Version,
+	},
+	Route{
+		"WrittenIn",
+		"GET",
+		"/writtenin",
+		WrittenIn,
 	},
 }
