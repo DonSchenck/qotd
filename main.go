@@ -11,7 +11,7 @@ var quotes = Quotes{
 	Quote{Id: 2, Quotation: "Life is really simple, but we insist on making it complicated.", Author: "Confucius"},
 	Quote{Id: 3, Quotation: "This above all, to thine own self be true.", Author: "William Shakespeare"},
 	Quote{Id: 4, Quotation: "Never complain, never explain.", Author: "Katharine Hepburn"},
-	Quote{Id: 5, Quotation: "Fly me to the moon...", Author: "Frank Sinatra"},
+	Quote{Id: 5, Quotation: "I did it my way", Author: "Frank Sinatra"},
 	Quote{Id: 6, Quotation: "Yeah, well, that's just like ... your opinion ... man ...", Author: "The Dude"},
 }
 
