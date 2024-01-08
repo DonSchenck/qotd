@@ -3,6 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 var quotes = Quotes{
@@ -15,7 +18,23 @@ var quotes = Quotes{
 	Quote{Id: 6, Quotation: "Seventy-eight percent of internet quotes are made up.", Author: "Abraham Lincoln"},
 }
 
+// func main() {
+// 	router := NewRouter()
+// 	log.Fatal(http.ListenAndServe(":10000", router))
+// }
+
 func main() {
-	router := NewRouter()
-	log.Fatal(http.ListenAndServe(":10000", router))
+	ac := new(controllers.AccountController)
+
+	router := mux.NewRouter()
+	//    router.HandleFunc("/signup", ac.SignUp).Methods("POST")
+	//    router.HandleFunc("/signin", ac.SignIn).Methods("POST")
+
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowCredentials: true,
+	})
+
+	handler := c.Handler(router)
+	log.Fatal(http.ListenAndServe(":3000", handler))
 }
