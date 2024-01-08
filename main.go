@@ -3,6 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
+
+	"github.com/donschenck/picturethisapi/go/pkg/mod/github.com/rs/cors@v1.9.0"
+	"github.com/gorilla/mux"
 )
 
 var quotes = Quotes{
@@ -20,20 +23,18 @@ var quotes = Quotes{
 // 	log.Fatal(http.ListenAndServe(":10000", router))
 // }
 
-
-
 func main() {
-    ac := new(controllers.AccountController)
+	ac := new(controllers.AccountController)
 
-    router := mux.NewRouter()
-    // router.HandleFunc("/signup", ac.SignUp).Methods("POST")
-    // router.HandleFunc("/signin", ac.SignIn).Methods("POST")
+	router := mux.NewRouter()
+	// router.HandleFunc("/signup", ac.SignUp).Methods("POST")
+	// router.HandleFunc("/signin", ac.SignIn).Methods("POST")
 
-    c := cors.New(cors.Options{
-        AllowedOrigins: []string{"*"},
-        AllowCredentials: true,
-    })
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowCredentials: true,
+	})
 
-    handler := c.Handler(router)
-    log.Fatal(http.ListenAndServe(":10000", handler)
+	handler := c.Handler(router)
+	log.Fatal(http.ListenAndServe(":10000", handler))
 }
