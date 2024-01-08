@@ -24,8 +24,6 @@ var quotes = Quotes{
 // }
 
 func main() {
-	ac := new(controllers.AccountController)
-
 	router := mux.NewRouter()
 	//    router.HandleFunc("/signup", ac.SignUp).Methods("POST")
 	//    router.HandleFunc("/signin", ac.SignIn).Methods("POST")
@@ -36,5 +34,5 @@ func main() {
 	})
 
 	handler := c.Handler(router)
-	log.Fatal(http.ListenAndServe(":3000", handler))
+	log.Fatal(http.ListenAndServe(":10000", handler))
 }
