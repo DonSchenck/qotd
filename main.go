@@ -25,8 +25,8 @@ var quotes = Quotes{
 
 func main() {
 	router := mux.NewRouter()
-	//    router.HandleFunc("/signup", ac.SignUp).Methods("POST")
-	//    router.HandleFunc("/signin", ac.SignIn).Methods("POST")
+	router.HandleFunc("/quotes", AllQuotes).Methods("GET")
+	router.HandleFunc("/quotes/random", RandomQuote).Methods("GET")
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
