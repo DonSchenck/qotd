@@ -33,8 +33,11 @@ func main() {
 	router.HandleFunc("/version", Version).Methods("GET")
 	router.HandleFunc("/writtenin", WrittenIn).Methods("GET")
 
+	origins := make([]string, 1)
+	origins[0] = "*"
+	originsOk := handlers.AllowedOrigins(origins)
+
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
-	originsOk := handlers.AllowedOrigins([]string{"*"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 	log.Fatal(http.ListenAndServe(":10000", handlers.CORS(originsOk, headersOk, methodsOk)(router)))
 
