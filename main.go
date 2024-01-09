@@ -4,8 +4,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"github.com/rs/cors"
 )
 
 var quotes = Quotes{
@@ -33,11 +33,11 @@ func main() {
 	router.HandleFunc("/version", Version).Methods("GET")
 	router.HandleFunc("/writtenin", WrittenIn).Methods("GET")
 
-	c := cors.New(cors.Options{
-		AllowedOrigins:   "*",
-		AllowCredentials: true,
-	})
+	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
+	log.Fatal(http.ListenAndServe(":10000", handlers.CORS(originsOk, headersOk, methodsOk)(router)))
 
-	handler := c.Handler(router)
-	log.Fatal(http.ListenAndServe(":10000", handler))
+	//	handler := c.Handler(router)
+	//	log.Fatal(http.ListenAndServe(":10000", handler))
 }
