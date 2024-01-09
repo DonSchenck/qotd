@@ -25,7 +25,12 @@ var quotes = Quotes{
 
 func main() {
 	router := mux.NewRouter()
+
+	router.HandleFunc("/", Index).Methods("GET")
 	router.HandleFunc("/quotes", AllQuotes).Methods("GET")
+	router.HandleFunc("/quotes/{quoteId}", OneQuote).Methods("GET")
+	router.HandleFunc("/version", Version).Methods("GET")
+	router.HandleFunc("/writtenin", WrittenIn).Methods("GET")
 	router.HandleFunc("/quotes/random", RandomQuote).Methods("GET")
 
 	c := cors.New(cors.Options{
