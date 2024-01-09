@@ -28,13 +28,13 @@ func main() {
 
 	router.HandleFunc("/", Index).Methods("GET")
 	router.HandleFunc("/quotes", AllQuotes).Methods("GET")
-	router.HandleFunc("/quotes/{quoteId}", OneQuote).Methods("GET")
+	router.HandleFunc("/quotes/random", RandomQuote).Methods("GET")
+	router.HandleFunc("/quotes/{quoteId:[0-9]+}", OneQuote).Methods("GET")
 	router.HandleFunc("/version", Version).Methods("GET")
 	router.HandleFunc("/writtenin", WrittenIn).Methods("GET")
-	router.HandleFunc("/quotes/random", RandomQuote).Methods("GET")
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"*"},
+		AllowedOrigins:   "*",
 		AllowCredentials: true,
 	})
 
