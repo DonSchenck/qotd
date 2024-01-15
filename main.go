@@ -37,7 +37,7 @@ func main() {
 	origins[0] = "*"
 	originsOk := handlers.AllowedOrigins(origins)
 
-	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Accept", "Cache-Control", "Dnt", "Referer", "Sec-Ch-Ua", "User-Agent", "Sec-Ch-Ua-Platform", "Sec-Ch-Ua-Mobile", "Content-Type", "Authorization"})
+	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Accept", "Accept-Encoding", "Accept-Language", "Cache-Control", "Dnt", "Referer", "Sec-Ch-Ua", "User-Agent", "Sec-Ch-Ua-Platform", "Sec-Ch-Ua-Mobile", "Content-Type", "Authorization"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 	log.Fatal(http.ListenAndServe(":10000", handlers.CORS(originsOk, headersOk, methodsOk)(router)))
 
