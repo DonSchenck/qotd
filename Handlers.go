@@ -74,6 +74,12 @@ func WrittenIn(w http.ResponseWriter, r *http.Request) {
 
 func GetFromDatabase(sqlCommand string) []Quote {
 	// Connection string
+	host := os.Getenv("DBHOST")
+	port := 5432
+	user := os.Getenv("DBUSER")
+	password := os.Getenv("DBPASSWORD")
+	dbname := os.Getenv("DBNAME")
+
 	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname)
 	// Open a connection to the database
